@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import KerjaSamaButton from "../MicroComponent/KerjasamaButton";
 
 export default function Footer () {
     return (
@@ -12,12 +13,7 @@ export default function Footer () {
                             Terimakasih sudah mengunjungi <br/> Website kami!
                         </div>
                         <div className='mt-8'>
-                            <div>
-                                <div className='font-semibold text-[18px] border border-[#CACACA] w-fit rounded-full flex items-center gap-2 text-black font-jakarta p-3 px-8 pr-11 bg-white'>Kontak Kami</div>
-                                <div className="border border-[#CACACA] rounded-full h-[54px] w-[54px] bg-white absolute -mt-13 ml-40 flex items-center justify-center transition duration-300 hover:translate-x-[8px]">
-                                <ArrowRight size={24} />
-                                </div>
-                            </div>
+                            <KerjaSamaButton />
                         </div>
                     </div>
 
