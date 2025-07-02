@@ -41,9 +41,24 @@ export default function KerjaSamaButton() {
     <Dialog>
       <DialogTrigger asChild>
         <div className="cursor-pointer">
-          <div className='font-semibold text-[18px] mt-10 border bg-white border-[#CACACA] w-fit rounded-full flex items-center gap-2 text-black font-jakarta p-3 px-8 pr-11'>Kontak Kami</div>
-          <div className="border border-[#CACACA] rounded-full h-[54px] w-[54px] bg-white absolute -mt-13 ml-40 flex items-center justify-center transition duration-300 hover:translate-x-[8px]">
-            <ArrowRight size={24} />
+          {/* Large version (lg and up) */}
+          <div className='hidden lg:block'>
+            <div className='font-semibold text-[18px] mt-10 border bg-white border-[#CACACA] w-fit rounded-full flex items-center gap-2 text-black font-jakarta p-3 px-8 pr-11'>
+              Kontak Kami
+            </div>
+            <div className="border border-[#CACACA] rounded-full h-[54px] w-[54px] bg-white absolute -mt-13 ml-40 flex items-center justify-center transition duration-300 hover:translate-x-[8px]">
+              <ArrowRight size={24} />
+            </div>
+          </div>
+          
+          {/* Small version (sm and md) */}
+          <div className='lg:hidden'>
+            <div className='font-semibold text-[14px] mt-10 border bg-white border-[#CACACA] w-fit rounded-full flex items-center gap-2 text-black font-jakarta p-2 px-5 pr-9'>
+              Kontak Kami
+            </div>
+            <div className="border border-[#CACACA] rounded-full h-[40px] w-[40px] bg-white absolute -mt-[39px] ml-32 flex items-center justify-center transition duration-300 hover:translate-x-[6px]">
+              <ArrowRight size={18} />
+            </div>
           </div>
         </div>
       </DialogTrigger>

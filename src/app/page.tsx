@@ -22,10 +22,19 @@ export default async function PostsPage() {
 
           <Tentang />
 
-          <ArticleCards />
+          {/* make this visible starting from md */}
+          <div className='hidden md:block'>
+            <ArticleCards />
+          </div>
 
         </div>
       </div>
+
+      {/* make this not visible from */}
+      <div className='md:hidden'>
+        <ArticleCards />
+      </div>
+
       <div className='mt-40'>
         <Footer />
       </div>

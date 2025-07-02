@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import KerjaSamaButton from "../MicroComponent/KerjasamaButton";
 
@@ -9,7 +8,7 @@ export default function Footer () {
                 <div className="flex items-center justify-between h-[300px]">
                     {/* left */}
                     <div>
-                        <div className="text-white text-[40px] font-semibold leading-14">
+                        <div className="text-white text-[28px] lg:text-[40px] font-semibold leading-9 lg:leading-14">
                             Terimakasih sudah mengunjungi <br/> Website kami!
                         </div>
                         <div className='mt-8'>
@@ -19,7 +18,7 @@ export default function Footer () {
 
                     {/* right */}
                     <div>
-                        <div className="text-white grid font-semibold text-[18px] space-y-4">
+                        <div className="text-white lg:grid font-semibold text-[18px] space-y-4 hidden ">
                             <Link href="/">Beranda</Link>
                             <Link href="/umkm">UMKM</Link>
                             <Link href="/blog">Artikel</Link>
