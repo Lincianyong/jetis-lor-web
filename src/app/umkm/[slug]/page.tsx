@@ -17,38 +17,42 @@ export default async function UmkmDetailPage({ params }: { params: { slug: strin
       <div className="xl:container xl:mx-auto mx-6 md:mx-16 lg:mx-20">
         <NavBar />
       </div>
-      <div className='container mx-auto py-12 max-w-3xl mb-12 min-h-screen'>
-        <div className="grid md:grid-cols-2 gap-8 mb-12 mt-12">
-          {/* Fixed size image container */}
-          <div className="relative h-64 w-full"> {/* Adjust height as needed */}
+      
+      <div className='container mx-auto px-4 sm:px-6 py-8 md:py-12 max-w-3xl mb-12 min-h-screen'>
+        {/* Mobile-first layout */}
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12 mt-6 md:mt-12">
+          {/* Image - full width on mobile, half on md+ */}
+          <div className="relative h-64 w-full md:h-80"> 
             <Image
               src={urlFor(umkm.thumbnail).width(800).height(600).url()}
               alt={umkm.title}
               fill
               className="object-cover rounded-lg"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+              priority
             />
           </div>
           
-          {/* Content aligned vertically center */}
-          <div className="flex flex-col justify-center">
-            <div>
+          {/* Content - optimized for mobile */}
+          <div className="flex flex-col justify-center space-y-4">
+            <div className="flex flex-wrap gap-2">
               {umkm.categories?.map((cat: any) => (
                 <span 
                   key={cat._id || cat.title}
-                  className="text-[18px] font-medium"
+                  className="text-base md:text-[18px] font-medium  rounded-full"
                 >
                   {cat.title}
                 </span>
               ))}
             </div>
-            <h1 className="text-3xl font-bold mb-4">{umkm.title}</h1>
             
-            <div className="mb-4">
-              <h2 className="text-[16px] font-medium mb-2">Products</h2>
+            <h1 className="text-2xl md:text-3xl font-bold">{umkm.title}</h1>
+            
+            <div className="space-y-2">
+              <h2 className="text-[15px] md:text-[16px] font-semibold">Produk</h2>
               <ul className="flex flex-wrap gap-2">
                 {umkm.products?.map((product: string, i: number) => (
-                  <li key={i} className="bg-gray-100 px-2 py-1 text-sm rounded font-medium">
+                  <li key={i} className="bg-gray-100 px-3 py-1 text-sm rounded-md font-medium">
                     {product}
                   </li>
                 ))}
@@ -60,16 +64,18 @@ export default async function UmkmDetailPage({ params }: { params: { slug: strin
                 href={umkm.locationUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-blue-600 hover:underline mb-6"
+                className="inline-flex items-center text-blue-600 hover:underline mt-2 text-[15px] md:text-[16px]"
               >
-                View Location ↗
+                Lihat Lokasi ↗
               </a>
             )}
           </div>
         </div>
 
+        {/* Long description with better mobile spacing */}
         {umkm.longDescription && (
-          <div className="prose max-w-none font-medium text-[16px] leading-7">
+          <div className="prose max-w-none font-medium text-[15px] md:text-[16px] leading-7 md:leading-8 space-y-4">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4">Tentang UMKM</h2>
             <PortableText value={umkm.longDescription}/>
           </div>
         )}

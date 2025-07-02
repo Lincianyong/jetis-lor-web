@@ -38,17 +38,16 @@ export default function UmkmPage() {
         <NavBar />
 
         <div className='mt-16'>
-          <div className='font-semibold text-[40px] text-center'>UMKM</div>
-          <div className='font-medium text-[20px] text-center'>Daftar Usaha Mikro, Kecil, dan Menengah Desa Jetis Lor</div>
+          <div className='font-semibold text-[28px] lg:text-[40px] text-center'>UMKM</div>
+          <div className='font-medium text-[16px] lg:text-[20px] text-center'>Daftar Usaha Mikro, Kecil, dan Menengah Desa Jetis Lor</div>
 
           <div className='flex justify-center mt-6'>
-            {/* Searchbar without enter button */}
-            <div className='h-[50px] w-[560px] border rounded-full flex items-center pl-4'>
+            <div className='h-[40px] w-[400px] lg:h-[50px] lg:w-[560px] border rounded-full flex items-center pl-4'>
               <Search />
               <input
                 type="text"
                 placeholder="Cari UMKM atau produk..."
-                className="pl-4 text-[18px] text-[#5A5A5A] outline-none w-full bg-transparent"
+                className="pl-4 text-[16px] lg:text-[18px] text-[#5A5A5A] outline-none w-full bg-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -60,28 +59,32 @@ export default function UmkmPage() {
           {filteredUmkms.map((umkm) => (
             <article key={umkm._id} className="border border-l-0 border-r-0 border-[#CACACA] py-6 overflow-hidden transition-shadow">
               <Link href={`/umkm/${umkm.slug}`}>
-                <div className='flex'>
-                  <div className="relative h-[180px] w-[260px] mr-4">
+                <div className='flex items-center'>
+                  {/* Fixed size image container */}
+                  <div className="flex-shrink-0 h-[160px] w-[200px] lg:h-[180px] lg:w-[260px] mr-4 relative">
                     <Image
                       src={urlFor(umkm.thumbnail).width(600).height(400).url()}
                       alt={umkm.title}
                       fill
-                      className="object-cover"
+                      className="object-cover rounded"
+                      sizes="260px" 
                     />
                   </div>
-                  <div className="p-4">
-                    <div className="text-[16px] text-black font-medium">
+                  
+                  {/* Text content that can grow */}
+                  <div className="lg:p-4 flex-grow min-w-0">
+                    <div className="text-[12px] lg:text-[16px] text-black font-medium">
                       {umkm.categories?.map((cat: any) => cat.title).join(', ')}
                     </div>
-                    <h2 className="text-[24px] font-semibold mb-2">{umkm.title}</h2>
+                    <h2 className="text-[20px] lg:text-[24px] font-semibold mb-2">{umkm.title}</h2>
                     <div className="flex flex-wrap gap-3 mb-3">
                       {umkm.products?.map((product: string, i: number) => (
-                        <span key={i} className="bg-gray-100 px-2 py-1 text-sm rounded font-medium">
+                        <span key={i} className="bg-gray-100 px-2 py-1 text-sm rounded font-medium text-[12px] lg:text-[14px]">
                           {product}
                         </span>
                       ))}
                     </div>
-                    <p className="mb-3 line-clamp-2 font-medium text-black mt-4 text-[16px]">{umkm.description}</p>
+                    <p className="mb-3 line-clamp-2 font-medium text-black mt-4 text-[14px] lg:text-[16px]">{umkm.description}</p>
                   </div>
                 </div>
               </Link>
