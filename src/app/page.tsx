@@ -6,6 +6,13 @@ import Landing from './components/Home/Landing'
 import Tentang from './components/Home/Tentang'
 import Footer from './components/NavigationAndFooter/Footer'
 import NavBar from './components/NavigationAndFooter/NavigationBar'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Website Jetis Lor',
+  description: '...',
+}
+ 
 
 export default async function PostsPage() {
   const posts = await client.fetch(postsQuery)

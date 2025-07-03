@@ -6,6 +6,12 @@ import Image from 'next/image'
 import { urlFor } from '../../../../lib/sanity'
 import NavBar from '@/app/components/NavigationAndFooter/NavigationBar'
 import Footer from '@/app/components/NavigationAndFooter/Footer'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'UMKM | Website Jetis Lor',
+  description: '...',
+}
 
 export default async function UmkmDetailPage({ params }: { params: { slug: string } }) {
   const umkm = await client.fetch(umkmBySlugQuery, { slug: params.slug })

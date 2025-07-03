@@ -6,6 +6,12 @@ import Image from 'next/image'
 import { urlFor } from '../../../../lib/sanity'
 import NavBar from '@/app/components/NavigationAndFooter/NavigationBar'
 import Footer from '@/app/components/NavigationAndFooter/Footer'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Artikel | Website Jetis Lor',
+  description: '...',
+}
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const post = await client.fetch(postBySlugQuery, { slug: params.slug })
@@ -16,38 +22,71 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
   return (
     <div>
-      <div className='xl:container xl:mx-auto mx-6 md:mx-16 lg:mx-20'>
+      <div className='xl:container xl:mx-auto px-4 sm:px-6 md:px-8 lg:px-10'>
         <NavBar />
       </div>
-      <article className="container mx-auto py-12 max-w-3xl mb-12">
-        <header className="mb-8">
-          <h1 className="text-[40px] font-semibold mb-4">{post.title}</h1>
-          <div className="flex items-center gap-4 font-medium mb-6">
+      
+      <article className="container mx-auto px-4 sm:px-6 py-6 md:py-8 lg:py-12 max-w-3xl mb-8 md:mb-12">
+        <header className="mb-6 md:mb-8">
+          {/* Categories */}
+          {post.categories?.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-3 md:mb-4">
+              {post.categories.map((cat: any) => (
+                <span 
+                  key={cat._id || cat.title}
+                  className="text-sm md:text-base rounded-full font-medium"
+                >
+                  {cat.title}
+                </span>
+              ))}
+            </div>
+          )}
+          
+          {/* Title - responsive font size */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 md:mb-4">
+            {post.title}
+          </h1>
+          
+          {/* Author and date - responsive layout */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-sm md:text-base font-medium mb-4 md:mb-6 text-gray-600">
             <span>Oleh {post.author.name}</span>
-            <span>•</span>
-            <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+            <span className="hidden sm:inline">•</span>
+            <span>
+              {new Date(post.publishedAt).toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </span>
           </div>
+          
+          {/* Main image - responsive sizing */}
           {post.mainImage && (
-            <Image
-              src={urlFor(post.mainImage).width(1200).height(630).url()}
-              alt={post.mainImage.alt || ''}
-              width={1200}
-              height={630}
-              className="w-full rounded-lg"
-            />
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+              <Image
+                src={urlFor(post.mainImage).width(1200).height(630).url()}
+                alt={post.mainImage.alt || post.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 90vw, 800px"
+                priority
+              />
+            </div>
           )}
         </header>
 
-        <div className="prose max-w-none mt-4 font-medium text-[16px] break-all leading-7">
+        {/* Content - responsive typography */}
+        <div className="prose prose-sm sm:prose-base max-w-none font-medium text-gray-800 leading-relaxed break-words">
           <PortableText value={post.body} />
         </div>
       </article>
-        <Footer />
+      
+      <Footer />
     </div>
   )
 }
 
-// Generate static paths
 export async function generateStaticParams() {
   const posts = await client.fetch(`*[_type == "post"] { "slug": slug.current }`)
   return posts.map((post: any) => ({ slug: post.slug }))
