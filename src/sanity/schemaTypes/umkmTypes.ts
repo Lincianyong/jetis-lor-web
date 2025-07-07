@@ -14,6 +14,20 @@ export const umkmType = defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+        slugify: input => input
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .slice(0, 96)
+      },
+      validation: Rule => Rule.required()
+    }),
+    defineField({
       name: 'description',
       title: 'Short Description',
       type: 'text',

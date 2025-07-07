@@ -24,17 +24,17 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
 export const umkmsQuery = `*[_type == "umkm"] | order(_createdAt desc) {
   _id,
   title,
+  "slug": slug.current,
   description,
   thumbnail,
-  "slug": _id,
   categories[]->{title},
   products[]
 }`
 
-// lib/sanity.queries.ts
-export const umkmBySlugQuery = `*[_type == "umkm" && _id == $slug][0] {
+export const umkmBySlugQuery = `*[_type == "umkm" && slug.current == $slug][0] {
   _id,
   title,
+  "slug": slug.current,
   description,
   longDescription,
   thumbnail,
@@ -42,7 +42,7 @@ export const umkmBySlugQuery = `*[_type == "umkm" && _id == $slug][0] {
   categories[]->{
     _id,
     title,
-    slug
+    "slug": slug.current
   },
   products[]
 }`

@@ -28,7 +28,7 @@ export default async function PostsPage() {
         {/* Top Featured Post - shown on all screens */}
         {topPost && (
           <div className="mt-12 mb-8">
-            <Link href={`/blog/${topPost.slug.current}`}>
+            <Link href={`/artikel/${topPost.slug.current}`}>
               <article className="w-full flex flex-col md:flex-row border border-[#CACACA] p-6 rounded-2xl gap-6">
                 <div className="relative h-[260px] w-full md:w-[450px] mb-4 rounded-lg overflow-hidden">
                   <Image
@@ -66,7 +66,7 @@ export default async function PostsPage() {
               key={post._id}
               className="border border-[#CACACA] rounded-xl overflow-hidden"
             >
-              <Link href={`/blog/${post.slug.current}`}>
+              <Link href={`/artikel/${post.slug.current}`}>
                 <div className="p-5">
                   <div className="text-[16px] text-black font-medium mb-1">
                     {post.categories?.map((cat: any) => cat.title).join(', ')}
@@ -106,7 +106,7 @@ export default async function PostsPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {nextThreePosts.slice(0, 2).map((post: any) => (
               <article key={post._id} className="border border-[#CACACA] rounded-xl overflow-hidden">
-                <Link href={`/blog/${post.slug.current}`}>
+                <Link href={`/artikel/${post.slug.current}`}>
                   <div className="p-5 pb-0">
                     <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
                     <p className="text-gray-600 mb-2">
@@ -135,7 +135,7 @@ export default async function PostsPage() {
             {/* Show third post only on lg+ screens */}
             {nextThreePosts.length > 2 && (
               <article className="hidden lg:block border border-[#CACACA] rounded-xl overflow-hidden">
-                <Link href={`/blog/${nextThreePosts[2].slug.current}`}>
+                <Link href={`/artikel/${nextThreePosts[2].slug.current}`}>
                   <div className="p-5 pb-0">
                     <h2 className="text-xl font-semibold mb-2">{nextThreePosts[2].title}</h2>
                     <p className="text-gray-600 mb-2">
@@ -170,7 +170,7 @@ export default async function PostsPage() {
                 key={post._id}
                 className="border border-l-0 border-r-0 border-[#CACACA] py-6 overflow-hidden transition-shadow"
               >
-                <Link href={`/blog/${post.slug.current}`}>
+                <Link href={`/artikel/${post.slug.current}`}>
                   <div className="flex flex-col md:flex-row">
                     <div className="relative h-[180px] w-full md:w-[260px] mr-4">
                       <Image

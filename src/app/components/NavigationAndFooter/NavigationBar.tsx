@@ -70,7 +70,7 @@ export default function NavBar() {
         <div className="flex justify-between text-black gap-12 font-jakarta font-[600] rounded-full border border-[#CACACA] p-3 px-8">
           <Link href="/">Beranda</Link>
           <Link href="/umkm">UMKM</Link>
-          <Link href="/blog">Artikel</Link>
+          <Link href="/artikel">Artikel</Link>
           <Link href="/tentang">Tentang</Link>
         </div>
 
@@ -142,7 +142,7 @@ export default function NavBar() {
           <div className="flex flex-col space-y-6 flex-grow">
             <Link href="/" onClick={() => setIsOpen(false)} className="text-lg font-semibold">Beranda</Link>
             <Link href="/umkm" onClick={() => setIsOpen(false)} className="text-lg font-semibold">UMKM</Link>
-            <Link href="/blog" onClick={() => setIsOpen(false)} className="text-lg font-semibold">Artikel</Link>
+            <Link href="/artikel" onClick={() => setIsOpen(false)} className="text-lg font-semibold">Artikel</Link>
             <Link href="/tentang" onClick={() => setIsOpen(false)} className="text-lg font-semibold">Tentang</Link>
             
             <div className="mt-auto mb-8">
