@@ -48,11 +48,6 @@ export default async function PostPage({ params }: Props) {
            {post.title}
          </h1>
 
-         <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 md:mb-4">
-           {post.slug.current}
-         </h1>
-
-
          {/* Author and date - responsive layout */}
          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-sm md:text-base font-medium mb-4 md:mb-6 text-gray-600">
            <span>Oleh {post.author.name}</span>

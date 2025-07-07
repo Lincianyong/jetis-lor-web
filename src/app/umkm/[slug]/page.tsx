@@ -48,7 +48,6 @@ export default async function UmkmDetailPage({ params }: { params: Promise<{ slu
            </div>
           
            <h1 className="text-2xl md:text-3xl font-bold">{umkm.title}</h1>
-           <h1 className="text-2xl md:text-3xl font-bold">{umkm.slug}</h1>
           
            <div className="space-y-2">
              <h2 className="text-[15px] md:text-[16px] font-semibold">Produk</h2>
