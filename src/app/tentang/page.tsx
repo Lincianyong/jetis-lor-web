@@ -34,7 +34,7 @@ export default function Tentang () {
           </div>
 
           {/* Swiper Image Carousel */}
-          <div className="w-[320px] flex flex-col items-center">
+          <div className="w-[320px] flex flex-col items-center px-6 md:px-0">
             <div className="h-[400px] w-full rounded-lg overflow-hidden">
               <Swiper
                 modules={[Pagination, Autoplay]}

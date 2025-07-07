@@ -57,38 +57,41 @@ export default function UmkmPage() {
 
         <div className="space-y-8 mt-18">
           {filteredUmkms.map((umkm) => (
-            <article key={umkm._id} className="border border-l-0 border-r-0 border-[#CACACA] py-6 overflow-hidden transition-shadow">
-              <Link href={`/umkm/${umkm.slug}`}>
-                <div className='flex items-center'>
-                  {/* Fixed size image container */}
-                  <div className="flex-shrink-0 h-[160px] w-[200px] lg:h-[180px] lg:w-[260px] mr-4 relative">
-                    <Image
-                      src={urlFor(umkm.thumbnail).width(600).height(400).url()}
-                      alt={umkm.title}
-                      fill
-                      className="object-cover rounded"
-                      sizes="260px" 
-                    />
-                  </div>
-                  
-                  {/* Text content that can grow */}
-                  <div className="lg:p-4 flex-grow min-w-0">
-                    <div className="text-[12px] lg:text-[16px] text-black font-medium">
-                      {umkm.categories?.map((cat: any) => cat.title).join(', ')}
-                    </div>
-                    <h2 className="text-[20px] lg:text-[24px] font-semibold mb-2">{umkm.title}</h2>
-                    <div className="flex flex-wrap gap-3 mb-3">
-                      {umkm.products?.map((product: string, i: number) => (
-                        <span key={i} className="bg-gray-100 px-2 py-1 text-sm rounded font-medium text-[12px] lg:text-[14px]">
-                          {product}
-                        </span>
-                      ))}
-                    </div>
-                    <p className="mb-3 line-clamp-2 font-medium text-black mt-4 text-[14px] lg:text-[16px]">{umkm.description}</p>
-                  </div>
+          <article key={umkm._id} className="border border-l-0 border-r-0 border-[#CACACA] py-6 overflow-hidden transition-shadow">
+            <Link href={`/umkm/${umkm.slug}`}>
+              {/* Change flex direction based on screen size */}
+              <div className='flex flex-col lg:flex-row items-center lg:items-start gap-4'>
+                {/* Image Section */}
+                <div className="h-[160px] w-full lg:h-[180px] lg:w-[260px] relative flex-shrink-0">
+                  <Image
+                    src={urlFor(umkm.thumbnail).width(600).height(400).url()}
+                    alt={umkm.title}
+                    fill
+                    className="object-cover rounded"
+                    sizes="(max-width: 1024px) 100vw, 260px"
+                  />
                 </div>
-              </Link>
-            </article>
+
+                {/* Text Section */}
+                <div className="lg:p-4 w-full">
+                  <div className="text-[12px] lg:text-[16px] text-black font-medium">
+                    {umkm.categories?.map((cat: any) => cat.title).join(', ')}
+                  </div>
+                  <h2 className="text-[20px] lg:text-[24px] font-semibold mb-2">{umkm.title}</h2>
+                  <div className="flex flex-wrap gap-3 mb-3">
+                    {umkm.products?.map((product: string, i: number) => (
+                      <span key={i} className="bg-gray-100 px-2 py-1 text-sm rounded font-medium text-[12px] lg:text-[14px]">
+                        {product}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mb-3 line-clamp-2 font-medium text-black mt-4 text-[14px] lg:text-[16px]">
+                    {umkm.description}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </article>
           ))}
         </div>
       </div>
