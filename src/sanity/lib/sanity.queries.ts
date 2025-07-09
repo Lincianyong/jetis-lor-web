@@ -6,7 +6,7 @@ export const postsQuery = `*[_type == "post"] | order(publishedAt desc) {
   mainImage,
   publishedAt,
   categories[]->{title},
-  "excerpt": pt::text(body[0..1])
+  "excerpt": pt::text(body[0])
 }`
 
 export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {

@@ -1,3 +1,6 @@
+'use client' // Add this at the top
+
+import { useEffect, useState } from 'react' // Import React hooks
 import { client } from '@/sanity/lib/client'
 import { postsQuery } from '../../sanity/lib/sanity.queries'
 import Link from 'next/link'
@@ -5,18 +8,54 @@ import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
 import NavBar from '../components/NavigationAndFooter/NavigationBar'
 import Footer from '../components/NavigationAndFooter/Footer'
-import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Artikel | Website Jetis Lor',
-  description: '...',
-}
+// Remove the metadata export since client components can't export metadata
+// We'll handle this with useEffect below
 
-export default async function PostsPage() {
-  const posts = await client.fetch(postsQuery)
+export default function PostsPage() {
+  const [posts, setPosts] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await client.fetch(postsQuery)
+        setPosts(data)
+      } catch (error) {
+        console.error('Error fetching posts:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchData()
+  }, [])
+
+  // Set page title dynamically
+  useEffect(() => {
+    document.title = 'Artikel | Website Jetis Lor'
+  }, [])
+
+  // Show loading state while data is being fetched
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Loading posts...</p>
+      </div>
+    )
+  }
+
+  // Handle case where there are no posts
+  if (!posts || posts.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>No posts available</p>
+      </div>
+    )
+  }
 
   const topPost = posts[0]
-  const mobilePosts = posts.slice(1) // All posts except the featured one for mobile
+  const mobilePosts = posts.slice(1)
   const nextThreePosts = posts.slice(1, 4)
   const remainingPosts = posts.slice(4)
 
@@ -52,7 +91,9 @@ export default async function PostsPage() {
                       day: 'numeric',
                     })}
                   </p>
-                  <p className="text-black break-all text-[16px] mt-4 leading-7">{topPost.excerpt}</p>
+                  <p className="text-black break-all text-[16px] mt-4 leading-7">
+                    {topPost.excerpt}
+                  </p>
                 </div>
               </article>
             </Link>
