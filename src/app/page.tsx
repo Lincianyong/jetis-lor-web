@@ -1,6 +1,7 @@
 // app/posts/page.tsx
 import { client } from '../../lib/sanity'
 import { postsQuery } from '../sanity/lib/sanity.queries'
+import ChatbotPage from './chatbot/page'
 import ArticleCards from './components/Home/ArticleCards'
 import Landing from './components/Home/Landing'
 import Tentang from './components/Home/Tentang'

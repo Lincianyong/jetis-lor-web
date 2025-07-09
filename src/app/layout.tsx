@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import ChatbotPage from "./chatbot/page";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -64,6 +65,7 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${jakarta.variable}`}>
       <body className="font-sans antialiased !bg-white !font-jakarta">
+        <ChatbotPage />
         {children}
       </body>
     </html>
