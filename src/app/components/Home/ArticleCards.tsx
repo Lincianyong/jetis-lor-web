@@ -64,7 +64,7 @@ export default function ArticleCards() {
             <SwiperSlide key={post._id}>
               <div className="px-2 pb-10">
                 <Link
-                  href={`/blog/${post.slug.current}`}
+                  href={`/artikel/${post.slug.current}`}
                   className="border rounded-2xl overflow-hidden group hover:shadow-md transition block h-full"
                 >
                   <div className="p-5">
@@ -101,7 +101,7 @@ export default function ArticleCards() {
         {posts.slice(0, 2).map((post) => (
           <Link
             key={post._id}
-            href={`/blog/${post.slug.current}`}
+            href={`/artikel/${post.slug.current}`}
             className="border rounded-2xl overflow-hidden group hover:shadow-md transition"
           >
             <div className="p-5">
@@ -135,7 +135,7 @@ export default function ArticleCards() {
         {posts.slice(0, 3).map((post) => (
           <Link
             key={post._id}
-            href={`/blog/${post.slug.current}`}
+            href={`/artikel/${post.slug.current}`}
             className="border rounded-2xl overflow-hidden group hover:shadow-md transition"
           >
             <div className="p-5">
